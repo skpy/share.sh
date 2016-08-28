@@ -13,7 +13,7 @@
  -u base URL for files
 ```
 
-You may set defaults in a configuration file at `$HOME/.config/share.sh`. Each option is a KEY=VALUE pair that matches an argument for the script.  For example:
+You may set defaults in a configuration file at `$HOME/.config/share.sh.conf`. Each option is a KEY=VALUE pair that matches an argument for the script.  For example:
 ```
 DIR='share'
 ECHO=1
