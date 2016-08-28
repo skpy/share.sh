@@ -1,4 +1,6 @@
 #/bin/bash
+# https://github.com/skpy/share.sh
+# Released under the terms of the MIT License
 
 usage() {
   cat << EOF
