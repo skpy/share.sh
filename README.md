@@ -24,16 +24,20 @@ URL='https://example.com/'
 
 Command line values will override config file values.
 
+Note that it is perfectly acceptable for `DIR` to be empty.  You may define the destination directory right in the rsync target, if you like.
+
 ## Tips and Tricks
 ### Variable Directory Names
 You don't have to use a static value for the target directory.  The config file and the command line both support normal shell tricks, like `$(date +%Y%m%d)` for date-based directory names, or `$(base64 /dev/urandom | tr -d '/+oO0' | dd bs=10 count=1 2>/dev/null)` for a random 10 character directory name.
 
 ### Automatic Cleanup
-On your server, you might want to run a cron job to automatically delete files older than a day or two.  This will ensure that you don't have unnecessary files hanging around in perpetuity.
+Often times you're sharing something for quick review, and not making a permanent addition to the world wide web.  On your server, you might want to run a cron job to automatically delete files older than a day or two.  This will ensure that you don't have unnecessary files hanging around in perpetuity.
 ```
 5 8 * * * /usr/bin/find /PATH/TO/YOUR/SHARE -maxdepth 1 -mtime +1 -type f -delete
 ```
 This would need to be adjusted if you're using variable destination directories.
+
+Using the `-d` or `-t` flags would allow you to upload files to a different directory if you wanted them to live longer than your scheduled cleanup job.
 
 ### OSX Automator
 OSX users might like to create an Automator service to allow invoking `share.sh` from the Finder, to make it super easy easy to share files.
