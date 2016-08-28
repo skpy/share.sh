@@ -25,8 +25,17 @@ URL='https://example.com/'
 Command line values will override config file values.
 
 ## Tips and Tricks
+### Variable Directory Names
 You don't have to use a static value for the target directory.  The config file and the command line both support normal shell tricks, like `$(date +%Y%m%d)` for date-based directory names, or `$(base64 /dev/urandom | tr -d '/+oO0' | dd bs=10 count=1 2>/dev/null)` for a random 10 character directory name.
 
+### Automatic Cleanup
+On your server, you might want to run a cron job to automatically delete files older than a day or two.  This will ensure that you don't have unnecessary files hanging around in perpetuity.
+```
+5 8 * * * /usr/bin/find /PATH/TO/YOUR/SHARE -maxdepth 1 -mtime +1 -type f -delete
+```
+This would need to be adjusted if you're using variable destination directories.
+
+### OSX Automator
 OSX users might like to create an Automator service to allow invoking `share.sh` from the Finder, to make it super easy easy to share files.
 * Create a Service that receives "files or folders".
 * From the "Utilities" library, select "Run Shell Script".
