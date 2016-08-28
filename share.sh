@@ -72,12 +72,12 @@ fi
 
 for FILE in "$@"
 do
-  FILENAME=$(basename ${FILE})
+  FILENAME=$(basename "${FILE}")
   # I want to suppress redundant directory separators in the
   # rsync command, and the resultant URL.
   DESTINATION=$(echo -n ${TARGET}/${DIR}/ | tr -s '/')
   LINK=$(echo -n ${URL}/${DIR}/${FILENAME} | tr -s '/' )
-  rsync ${OPTIONS} ${FILE} ${DESTINATION};
+  rsync ${OPTIONS} "${FILE}" ${DESTINATION};
   if [ $ECHO -eq 1 ]; then
     echo "${LINK}"
   else
